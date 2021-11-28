@@ -1,0 +1,32 @@
+{
+    "name": "samireltabal/menu-system",
+    "description": "Menu System Package For Laravel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SamirEltabal\\MenuSystem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "samir eltabal",
+            "email": "samir.m.eltabal@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SamirEltabal\\MenuSystem\\MenuSystemServiceProvider"
+            ],
+            "aliases": {
+                "MenuSystem": "SamirEltabal\\MenuSystem\\MenuSystemFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^8.65",
+        "php": "^7.3|^8.0"
+    }
+}
