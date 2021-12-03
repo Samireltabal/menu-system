@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use SamirEltabal\MenuSystem\Models\MenuItem;
 use SamirEltabal\MenuSystem\Models\Menu;
+use Cache;
+
 class MenuController extends Controller
 {
     public function __construct() {
@@ -42,10 +44,13 @@ class MenuController extends Controller
     }
 
     public function get_menu($slug) {
+        $menu = Cache::get('menu-'. $slug , function () use($slug) {
+            return Menu::slug($slug)->firstOrFail();
+        });
         try {
-            $menu = Menu::slug($slug)->firstOrFail();
+            // $menu = Menu::slug($slug)->firstOrFail();
         } catch (\Throwable $th) {
-            return response()->json($th);
+            return response()->json($th, 401);
         }
         return response()->json($menu, 200);
     }
